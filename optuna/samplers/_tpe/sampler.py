@@ -253,6 +253,7 @@ class TPESampler(BaseSampler):
                 Added in v3.0.0 as an experimental feature. The interface may change in newer
                 versions without prior notice.
                 See https://github.com/optuna/optuna/releases/tag/v3.0.0.
+
         categorical_distance_func:
             A dictionary of distance functions for categorical parameters. The key is the name of
             the categorical parameter and the value is a distance function that takes two
@@ -525,10 +526,7 @@ class TPESampler(BaseSampler):
             best = np.argmax(score)
             return {k: v[best].item() for k, v in samples.items()}
         else:
-            raise ValueError(
-                "The size of 'samples' should be more than 0."
-                "But samples.size = {}".format(sample_size)
-            )
+            return {k: v[0].item() for k, v in samples.items()}
 
     @staticmethod
     def hyperopt_parameters() -> Dict[str, Any]:
