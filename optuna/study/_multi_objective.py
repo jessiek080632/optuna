@@ -5,9 +5,10 @@ from typing import List, Optional, Sequence
 
 import numpy as np
 
-import optuna
 from optuna.study._study_direction import StudyDirection
 from optuna.trial import FrozenTrial, TrialState
+
+import optuna
 
 
 def _get_pareto_front_trials_2d(
